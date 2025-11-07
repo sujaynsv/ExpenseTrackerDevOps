@@ -13,7 +13,7 @@ A simple, self-hosted expense tracking web app built with Go. Track expenses, in
 ## Quick Start (Local)
 1. Install Go and Docker.
 2. Clone the repo: `git clone https://github.com/sujaynsv/ExpenseTrackerDevOps`
-3. Run locally: `go run ./cmd/expenseowl` or use Docker: `docker run -p 8080:8080 tanq16/expenseowl:main`
+3. Run locally: `go run ./cmd/expenseowl`
 4. Open `http://localhost:8080` in your browser.
 
 ## Deployment
@@ -39,3 +39,35 @@ jobs:
       - uses: actions/checkout@v4
       - name: Trigger Render Deploy
         run: curl -X POST ${{ secrets.RENDER_DEPLOY_HOOK }}
+```
+
+## 🤝 Contributing Guidelines
+
+We welcome contributions to **ExpenseOwl**! Whether it’s fixing bugs, adding features, or improving documentation, your help makes the project better.
+
+### 🛠️ How to Contribute
+1. **Fork the repository** on GitHub.
+2. **Clone your fork** locally:
+   ```bash
+   git clone https://github.com/your-username/ExpenseTrackerDevOps.git
+   ```
+3. **Create a new branch** for your changes:
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
+4. **Make your changes** (ensure code is formatted with `go fmt`).
+5. **Run tests** to confirm everything works:
+   ```bash
+   go test ./...
+   ```
+6. **Commit and push** your changes:
+   ```bash
+   git commit -m "Add: your feature description"
+   git push origin feature/your-feature-name
+   ```
+7. **Open a Pull Request** against the `main` branch.
+
+---
+
+### 📜 License
+By contributing, you agree that your contributions will be licensed under the same license as the project (MIT, unless otherwise specified).
