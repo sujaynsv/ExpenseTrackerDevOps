@@ -18,10 +18,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Notify on Issue or Comment
-        if: github.actor != 'Tanq16'
+        if: github.actor != 'sujaynsv'
         run: |
           curl -H "Content-Type: application/json" -X POST \
-          -d "{\"content\": \"*New issue/comment from **${{ github.actor }}***\n${{ github.event.issue.html_url }}\"}" ${{ secrets.DISCORD_WEBHOOK }}
+          "${{ secrets.DISCORD_WEBHOOK }}" \
+          -d "{\"content\": \"*New issue/comment from **${{ github.actor }}***\n${{ github.event.issue.html_url }}\"}"
 
   build-status-notification:
     if: github.event_name == 'workflow_run'
@@ -30,14 +31,16 @@ jobs:
       - name: Notify on Build Status
         run: |
           curl -H "Content-Type: application/json" -X POST \
-          -d "{\"content\": \"*Workflow run for **${{ github.repository }}***\n${{ github.event.workflow_run.name }} - ${{ github.event.workflow_run.conclusion }}\"}" ${{ secrets.DISCORD_WEBHOOK }}
+          "${{ secrets.DISCORD_WEBHOOK }}" \
+          -d "{\"content\": \"*Workflow run for **${{ github.repository }}***\n${{ github.event.workflow_run.name }} - ${{ github.event.workflow_run.conclusion }}\"}"
 
   pull-request-notification:
     if: github.event_name == 'pull_request_target'
     runs-on: ubuntu-latest
     steps:
       - name: Notify on PR related activities
-        if: github.actor != 'Tanq16'
+        if: github.actor != 'sujaynsv'
         run: |
           curl -H "Content-Type: application/json" -X POST \
-          -d "{\"content\": \"*New PR activity from **${{ github.actor }}***\n${{ github.event.pull_request.html_url }}\"}" ${{ secrets.DISCORD_WEBHOOK }}
+          "${{ secrets.DISCORD_WEBHOOK }}" \
+          -d "{\"content\": \"*New PR activity from **${{ github.actor }}***\n${{ github.event.pull_request.html_url }}\"}"
